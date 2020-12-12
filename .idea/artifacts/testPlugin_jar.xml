@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="testPlugin:jar">
+    <output-path>D:/plugintester/plugins</output-path>
+    <root id="archive" name="testPlugin.jar">
+      <element id="module-output" name="testPlugin" />
+      <element id="extracted-dir" path="D:/plugintester/spigot-api-1.16.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
