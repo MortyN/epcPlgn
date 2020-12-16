@@ -37,30 +37,34 @@ public class mobLootDeathHandler implements Listener {
             return;
         }
 
-//        EntityDamageEvent causeDeath = event.getEntity().getLastDamageCause();
-//        EntityDamageEvent.DamageCause damCause = causeDeath.getCause();
-//        Entity entity = event.getEntity();
-//
-//        if (!event.getEntityType().equals(EntityType.ENDERMAN)){
-//            return;
-//        }
-//        if(mobFarmLoot){
-//            if(damCause== EntityDamageEvent.DamageCause.SUFFOCATION){
-//                event.getDrops().clear();
-//                return;
-//            }
-//            else{
-//                event.getDrops().clear();
-//
-//            }
-//        }
+    }
+
+    @EventHandler
+    public void onIronGolemDeath(EntityDeathEvent event){
+        List<ItemStack> drops = event.getDrops();
+        Iterator<ItemStack> iterator = drops.iterator();
+        if (!event.getEntityType().equals(EntityType.IRON_GOLEM)){
+            return;
+        }
+        if(mobFarmLoot) {
+            while (iterator.hasNext()) {
+                ItemStack item = iterator.next();
+                if (item != null && !item.getType().equals(Material.AIR)) {
+                    if (item.getType().equals(Material.POPPY)) iterator.remove();
+                }
+            }
+        }
+        else{
+            return;
+        }
+
     }
 
     @EventHandler
     public void onPiglinDeath(EntityDeathEvent event){
         List<ItemStack> drops = event.getDrops();
         Iterator<ItemStack> iterator = drops.iterator();
-        if (!event.getEntityType().equals(EntityType.PIGLIN)){
+        if (!event.getEntityType().equals(EntityType.ZOMBIFIED_PIGLIN)){
             return;
         }
         if(mobFarmLoot) {
@@ -68,28 +72,13 @@ public class mobLootDeathHandler implements Listener {
                 ItemStack item = iterator.next();
                 if (item != null && !item.getType().equals(Material.AIR)) {
                     if (item.getType().equals(Material.ROTTEN_FLESH)) iterator.remove();
+                    if (item.getType().equals(Material.GOLDEN_SWORD)) iterator.remove();
                 }
             }
         }
         else{
             return;
         }
-//        Random r= new Random();
-//        int nuggetChance = r.nextInt(2);
-//        Location piglinLoc = event.getEntity().getLocation();
-//
-//        if (!event.getEntityType().equals(EntityType.ZOMBIFIED_PIGLIN)){
-//            return;
-//        }
-//        if(mobFarmLoot){
-//            event.getDrops().clear();
-//            if(nuggetChance == 0){
-//                return;
-//            }
-//            else{
-//                event.getEntity().getWorld().dropItem(piglinLoc,new ItemStack(Material.GOLD_NUGGET));
-//            }
-//        }
     }
 
     @EventHandler
