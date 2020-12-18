@@ -24,7 +24,7 @@ public class mobLootDeathHandler implements Listener {
         //list of items i don't want dropped
         //Hashset is not thread safe, assuming this isn't an issue
         Set<Material> mobloot = new HashSet<Material>();
-
+//TODO want to make a json for the items i dont want dropped for easy configuration
         mobloot.add(Material.ENDER_PEARL);
         mobloot.add(Material.POPPY);
         mobloot.add(Material.ROTTEN_FLESH);
