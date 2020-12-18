@@ -4,145 +4,56 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static com.morten.epicPlugin.events.mobFarmLootOn.mobFarmLoot;
 
 public class mobLootDeathHandler implements Listener {
 
     @EventHandler
-    public void onEndermenDeath(EntityDeathEvent event){
+    public void onMobFarmDeath(EntityDeathEvent event){
+
+        //list of items i don't want dropped
+        //Hashset is not thread safe, assuming this isn't an issue
+        Set<Material> mobloot = new HashSet<Material>();
+
+        mobloot.add(Material.ENDER_PEARL);
+        mobloot.add(Material.POPPY);
+        mobloot.add(Material.ROTTEN_FLESH);
+        mobloot.add(Material.GOLDEN_SWORD);
+        mobloot.add(Material.STONE_SWORD);
+        mobloot.add(Material.CROSSBOW);
+        mobloot.add(Material.IRON_AXE);
+        mobloot.add(Material.WHITE_BANNER);
+        mobloot.add(Material.SADDLE);
+
         List<ItemStack> drops = event.getDrops();
         Iterator<ItemStack> iterator = drops.iterator();
-        if (!event.getEntityType().equals(EntityType.ENDERMAN)){
-            return;
-        }
-        if(mobFarmLoot) {
-            while (iterator.hasNext()) {
-                ItemStack item = iterator.next();
-                if (item != null && !item.getType().equals(Material.AIR)) {
-                    if (item.getType().equals(Material.ENDER_PEARL)) iterator.remove();
+
+        if((event.getEntity().getType() != EntityType.PLAYER)){
+            if(mobFarmLoot) {
+                while (iterator.hasNext()) {
+                    ItemStack item = iterator.next();
+                    if (item != null && !item.getType().equals(Material.AIR)) {
+                        if (mobloot.contains(item.getType())){
+                            iterator.remove();
+                        }
+                    }
                 }
+
             }
         }
-        else{
-            return;
-        }
 
-    }
-
-    @EventHandler
-    public void onIronGolemDeath(EntityDeathEvent event){
-        List<ItemStack> drops = event.getDrops();
-        Iterator<ItemStack> iterator = drops.iterator();
-        if (!event.getEntityType().equals(EntityType.IRON_GOLEM)){
-            return;
-        }
-        if(mobFarmLoot) {
-            while (iterator.hasNext()) {
-                ItemStack item = iterator.next();
-                if (item != null && !item.getType().equals(Material.AIR)) {
-                    if (item.getType().equals(Material.POPPY)) iterator.remove();
-                }
-            }
-        }
-        else{
-            return;
-        }
-
-    }
-
-    @EventHandler
-    public void onPiglinDeath(EntityDeathEvent event){
-        List<ItemStack> drops = event.getDrops();
-        Iterator<ItemStack> iterator = drops.iterator();
-        if (!event.getEntityType().equals(EntityType.ZOMBIFIED_PIGLIN)){
-            return;
-        }
-        if(mobFarmLoot) {
-            while (iterator.hasNext()) {
-                ItemStack item = iterator.next();
-                if (item != null && !item.getType().equals(Material.AIR)) {
-                    if (item.getType().equals(Material.ROTTEN_FLESH)) iterator.remove();
-                    if (item.getType().equals(Material.GOLDEN_SWORD)) iterator.remove();
-                }
-            }
-        }
         else{
             return;
         }
     }
-
-    @EventHandler
-    public void onWitherDeath(EntityDeathEvent event){
-        List<ItemStack> drops = event.getDrops();
-        Iterator<ItemStack> iterator = drops.iterator();
-        if (!event.getEntityType().equals(EntityType.WITHER_SKELETON)){
-            return;
-        }
-        if(mobFarmLoot) {
-            while (iterator.hasNext()) {
-                ItemStack item = iterator.next();
-                if (item != null && !item.getType().equals(Material.AIR)) {
-                    if (item.getType().equals(Material.STONE_SWORD)) iterator.remove();
-                }
-            }
-        }
-        else{
-            return;
-        }
-
-    }
-
-    @EventHandler
-    public void onPillagerDeath(EntityDeathEvent event){
-        List<ItemStack> drops = event.getDrops();
-        Iterator<ItemStack> iterator = drops.iterator();
-        if (!event.getEntityType().equals(EntityType.PILLAGER)){
-            return;
-        }
-        if(mobFarmLoot) {
-            while (iterator.hasNext()) {
-                ItemStack item = iterator.next();
-                if (item != null && !item.getType().equals(Material.AIR)) {
-                    if (item.getType().equals(Material.CROSSBOW)) iterator.remove();
-                    if (item.getType().equals(Material.IRON_AXE)) iterator.remove();
-                }
-            }
-        }
-        else{
-            return;
-        }
-
-    }
-
-    @EventHandler
-    public void onRavengerDeath(EntityDeathEvent event){
-        List<ItemStack> drops = event.getDrops();
-        Iterator<ItemStack> iterator = drops.iterator();
-        if (!event.getEntityType().equals(EntityType.PILLAGER)){
-            return;
-        }
-        if(mobFarmLoot) {
-            while (iterator.hasNext()) {
-                ItemStack item = iterator.next();
-                if (item != null && !item.getType().equals(Material.AIR)) {
-                    if (item.getType().equals(Material.SADDLE)) iterator.remove();
-                }
-            }
-        }
-        else{
-            return;
-        }
-
-    }
-
 }

@@ -4,7 +4,8 @@ author: MortenN
 main: com.morten.epicPlugin.EpicMain
 api-version: 1.14
 commands:
-  sleep toggle:
+
+  sand:
     description: Sleep toggle if night
     usage: /<command>
   mobFarmLootOn:
