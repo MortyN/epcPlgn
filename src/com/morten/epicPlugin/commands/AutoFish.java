@@ -30,10 +30,11 @@ public class AutoFish implements CommandExecutor {
             ItemStack inMainHand = player.getInventory().getItemInMainHand();
 
             int checkEnch = inMainHand.getEnchantments().size();
-            if(!(player.getLocation().getBlock().getType() == Material.WATER) && y == 62){
+            if(!((player.getLocation().getBlock().getType() == Material.WATER) && y == 62)){
                 player.sendMessage("You need be knee deep in the " + ChatColor.BLUE + ChatColor.BOLD + "Ocean" + ChatColor.RESET +", not a waterblock!");
-
+                return true;
             }
+
             else if(inMainHand.getType().equals(Material.FISHING_ROD)){
                 if (checkEnch>0){
                     player.sendMessage("You need a " + ChatColor.BOLD + ChatColor.GREEN + "Fishing Rod " + ChatColor.RESET + "without enchantments!");
