@@ -11,7 +11,15 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 import static com.morten.epicPlugin.events.mobFarmLootOn.mobFarmLoot;
@@ -22,18 +30,28 @@ public class mobLootDeathHandler implements Listener {
     public void onMobFarmDeath(EntityDeathEvent event){
 
         //list of items i don't want dropped
-        //Hashset is not thread safe, assuming this isn't an issue
         Set<Material> mobloot = new HashSet<Material>();
-//TODO want to make a json for the items i dont want dropped for easy configuration
-        mobloot.add(Material.ENDER_PEARL);
-        mobloot.add(Material.POPPY);
-        mobloot.add(Material.ROTTEN_FLESH);
-        mobloot.add(Material.GOLDEN_SWORD);
-        mobloot.add(Material.STONE_SWORD);
-        mobloot.add(Material.CROSSBOW);
-        mobloot.add(Material.IRON_AXE);
-        mobloot.add(Material.WHITE_BANNER);
-        mobloot.add(Material.SADDLE);
+//TODO JSON file is now made (manually), but i want it to generate at start and add default values, you should also be able to add values to the JSON file in-game through commands.
+//Reads a json with a list of items
+        JSONParser parser = new JSONParser();
+
+        try {
+            Object obj = parser.parse(new FileReader("D:/plugintester/plugins/mobConfig.json"));
+            JSONObject jsonObject = (JSONObject) obj;
+            JSONArray mobLootArray = (JSONArray) jsonObject.get("mobLoot");
+            Iterator<String> iterator = mobLootArray.iterator();
+
+            while(iterator.hasNext()){
+                mobloot.add(Material.getMaterial(iterator.next()));
+            }
+
+        }
+
+        catch(FileNotFoundException e) {e.printStackTrace(); }
+        catch(IOException e) {e.printStackTrace(); }
+        catch(ParseException e) {e.printStackTrace(); }
+        catch(Exception e) {e.printStackTrace(); }
+
 
         List<ItemStack> drops = event.getDrops();
         Iterator<ItemStack> iterator = drops.iterator();
