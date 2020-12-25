@@ -1,9 +1,13 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="testPlugin:jar">
-    <output-path>D:/plugintester/plugins</output-path>
+    <output-path>$USER_HOME$/Documents/spigotAPI/1.16/plugins</output-path>
     <root id="archive" name="testPlugin.jar">
       <element id="module-output" name="testPlugin" />
-      <element id="extracted-dir" path="D:/plugintester/spigot-api-1.16.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.6/gson-2.8.6.jar" path-in-jar="/" />
+      <element id="library" level="project" name="spigot-api-1.16.4" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
