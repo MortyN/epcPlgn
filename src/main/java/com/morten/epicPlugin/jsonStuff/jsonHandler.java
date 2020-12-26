@@ -10,6 +10,7 @@ import java.util.*;
 public class jsonHandler {
     public static void main(String[] args) {
         //serializeMobList();
+
     }
     private static void serializeMobList() {
         //Example on stock config file
@@ -25,24 +26,21 @@ public class jsonHandler {
         System.out.println(json);
 
     }
-    public Set<String> deserializeMobList() {
+    public List<String> deserializeMobList() {
         //initializing Set array for loot
-        Set<String> mobloot = new HashSet<String>();
+        List<String> mobloot = new ArrayList<String>();
 
         try (Reader reader = new FileReader("d:\\plugintester\\plugins\\mobConfig.json")) {
 
             nameArr findTwo = new Gson().fromJson(reader, nameArr.class);
 
-            Iterator iterator = findTwo.nameID.iterator();
+            mobloot.addAll(findTwo.nameID);
 
-            while(iterator.hasNext()){
-                mobloot.add(iterator.next().toString());
-            }
+
         }
         catch (IOException e){
             e.printStackTrace();
         }
-
         return mobloot;
     }
 
