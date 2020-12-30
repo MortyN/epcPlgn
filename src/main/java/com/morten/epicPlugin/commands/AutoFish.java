@@ -5,10 +5,8 @@ import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.MainHand;
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -26,7 +24,6 @@ public class AutoFish implements CommandExecutor {
             int y = location.getBlockY();
             int z = location.getBlockZ();
 
-            MainHand mainhand = player.getMainHand();
             ItemStack inMainHand = player.getInventory().getItemInMainHand();
 
             int checkEnch = inMainHand.getEnchantments().size();

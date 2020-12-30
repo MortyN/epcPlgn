@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
-import static com.morten.epicPlugin.events.mobFarmLootOn.mobFarmLoot;
+import static com.morten.epicPlugin.events.mobFarmLoot.mobFarmLoot;
 
 public class mobLootDeathHandler implements Listener {
     @EventHandler

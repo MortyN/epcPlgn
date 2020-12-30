@@ -8,11 +8,17 @@ commands:
   sand:
     description: Sleep toggle if night
     usage: /<command>
-  mobFarmLootOn:
-    description: Sleep toggle if night
+  mobFarmLoot:
+    description: Displays help page
     usage: /<command>
-  mobFarmLootOff:
-    description: Sleep toggle if night
+  mobFarmLoot ON:
+    description: Enables mobFarmLoot
+    usage: /<command>
+  mobFarmLoot OFF:
+    description: Disables mobFarmLoot
+    usage: /<command>
+  mobFarmLoot List:
+    description: Disables mobFarmLoot
     usage: /<command>
   sleep:
     description: Sleep command
