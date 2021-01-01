@@ -2,29 +2,19 @@ package com.morten.epicPlugin.jsonStuff;
 
 import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.util.*;
 
 public class jsonHandler {
     public static void main(String[] args) {
-        //serializeMobList();
+//        initializeJson();
 
     }
-    private static void serializeMobList() {
+    public static void initializeJson() throws IOException {
         //Example on stock config file
-        Set<String> items = new HashSet<>();
+        Set<String> items = new HashSet<String>();
 
-        MobList nameID = new MobList(items);
-        items.add("ENDER_PEARL");
-        items.add("Rotten");
-        items.add("flesh");
-        items.add("cool");
 
-        String json = new Gson().toJson(nameID);
-        System.out.println(json);
 
     }
     public List<String> deserializeMobList() {
