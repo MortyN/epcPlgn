@@ -34,12 +34,10 @@ public class mobLootDeathHandler implements Listener {
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 return;
             }
-        }
-        else {
+        } else {
             return;
         }
     }

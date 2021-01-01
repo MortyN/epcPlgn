@@ -20,6 +20,9 @@ commands:
   mobFarmLoot List:
     description: Disables mobFarmLoot
     usage: /<command>
+  mobFarmLoot Add:
+    description: Disables mobFarmLoot
+    usage: /<command>
   sleep:
     description: Sleep command
     usage: /<command>
